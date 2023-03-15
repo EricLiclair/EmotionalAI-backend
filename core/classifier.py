@@ -1,7 +1,8 @@
 import pandas as pd
 import pickle
-
-
+import os
+from EmotionalAI.settings import BASE_DIR
+from core.train_and_export_model import generate_model
 class ClassificationsConstants:
     NEGATIVE = "NEGATIVE"
     NEUTRAL = "NEUTRAL"
@@ -29,6 +30,9 @@ class EmotionClassifier:
 
     def _load_model_from_pickle(self, model_pickle_file_name):
         """Model loading method"""
+        if not os.path.exists(model_pickle_file_name):
+            print('model not found! Creating...')
+            generate_model(model_pickle_file_name=model_pickle_file_name)
         with open(model_pickle_file_name, 'rb') as model_pickle:
             return pickle.load(model_pickle)
 
@@ -48,10 +52,6 @@ class EmotionClassifier:
         return index_to_label_mapping[label_index]
 
 
-MODEL_PICKLE_FILE_NAME = "model.sav"
-model = EmotionClassifier(model_pickle_file_name=MODEL_PICKLE_FILE_NAME)
+MODEL_PICKLE_FILE_NAME = os.path.join(BASE_DIR, "model.sav") 
 
-X = pd.read_csv("data/test_data.csv")
-X = X.drop(columns=X.columns[0], axis=1)
-y_result = pd.read_csv("data/test_result.csv")
-y = model.predict(X=X)
+model = EmotionClassifier(model_pickle_file_name=MODEL_PICKLE_FILE_NAME)
