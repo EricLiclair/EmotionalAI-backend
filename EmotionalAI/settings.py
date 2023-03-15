@@ -32,9 +32,9 @@ load_environment(ENVIRONMENT_TYPE)
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 
-ALLOWED_HOSTS = ['emotional-ai-api.up.railway.app', 'localhost' ]
+ALLOWED_HOSTS = ['emotional-ai-api.up.railway.app', 'localhost', '127.0.0.1', 'emotional-ai-frontend.vercel.app' ]
 
-CORS_ALLOWED_ORIGINS = ['https://emotional-ai-api.up.railway.app', 'http://localhost:3000' ]
+CORS_ALLOWED_ORIGINS = ['https://emotional-ai-api.up.railway.app', 'http://localhost:3000', 'http://127.0.0.1', 'https://emotional-ai-frontend.vercel.app' ]
 
 
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
@@ -49,12 +49,14 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'corsheaders',
     'core'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',

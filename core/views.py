@@ -22,3 +22,13 @@ class GetMusicRecommendation(APIView):
             'message': 'this is coming from GetMusicRecommendation'
         }
         return Response(response, status=status.HTTP_200_OK)
+    
+
+class DefaultView(APIView):
+    def get(self, request):
+        response = {
+            "Message": "This is the api for EmotionalAI",
+            "Owner": "Shubham Kushwaha",
+            "MailTo": "shubham.btech.cs19@iiitranchi.ac.in"
+        }
+        return Response(response, status=status.HTTP_200_OK)
