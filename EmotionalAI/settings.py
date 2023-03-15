@@ -32,9 +32,9 @@ load_environment(ENVIRONMENT_TYPE)
 SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 
-ALLOWED_HOSTS = ['clairvoyant-dev1.up.railway.app', 'localhost' ]
+ALLOWED_HOSTS = ['emotional-ai-frontend.vercel.app/', 'localhost' ]
 
-CORS_ALLOWED_ORIGINS = ['https://clairvoyant-dev1.up.railway.app', 'http://localhost:3000' ]
+CORS_ALLOWED_ORIGINS = ['https://emotional-ai-frontend.vercel.app/', 'http://localhost:3000' ]
 
 
 CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS
